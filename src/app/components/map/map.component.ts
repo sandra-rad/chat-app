@@ -1,15 +1,20 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  NgZone,
+} from '@angular/core';
 import {
   tileLayer,
   latLng,
   LeafletMouseEvent,
   Map,
-  circle,
-  polygon,
   marker,
   Layer,
+  Marker,
+  LeafletEvent,
 } from 'leaflet';
-import { LeafletDirective } from '@asymmetrik/ngx-leaflet';
 
 @Component({
   selector: 'app-map',
@@ -26,11 +31,23 @@ export class MapComponent implements OnInit {
     zoom: 5,
     center: latLng([46.7712, 23.6236]),
   };
-  layers: Layer[] = [marker([46.7712, 23.6236])];
 
+  layers: Layer[] = [];
+
+  activeMarker: Marker;
+
+  constructor(private zone: NgZone) {}
   ngOnInit(): void {}
 
   onLeafletClick(event: LeafletMouseEvent) {
-    this.layers.push(marker(event.latlng));
+    const newMarker = marker(event.latlng, {
+      title: 'Chatroom ' + (this.layers.length + 1),
+    }).on('click', (eventLeaflet: LeafletEvent) => {
+      this.zone.run(() => {
+        this.activeMarker = eventLeaflet.target as Marker;
+      });
+    });
+    this.activeMarker = newMarker;
+    this.layers.push(newMarker);
   }
 }

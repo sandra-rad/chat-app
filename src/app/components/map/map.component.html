@@ -6,3 +6,8 @@
   [leafletLayers]="layers"
   (leafletClick)="onLeafletClick($event)"
 ></div>
+<div class="default-message" *ngIf="!activeMarker; else chat">Click marker</div>
+
+<ng-template #chat>
+  <app-chat class="default-message" [activeMarker]="activeMarker"></app-chat>
+</ng-template>

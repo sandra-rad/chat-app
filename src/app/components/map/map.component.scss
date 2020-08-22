@@ -2,3 +2,13 @@
   height: 100%;
   padding: 0;
 }
+
+.default-message {
+  position: absolute;
+  top: 2.5%;
+  right: 3%;
+  z-index: 9999;
+  background: #ffffff;
+  padding: 1rem 3rem;
+  cursor: default;
+}
