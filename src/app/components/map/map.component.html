@@ -1,1 +1,8 @@
-<div class="map" leaflet [leafletOptions]="options"></div>
+<div
+  #mapHtml
+  class="map"
+  leaflet
+  [leafletOptions]="options"
+  [leafletLayers]="layers"
+  (leafletClick)="onLeafletClick($event)"
+></div>
