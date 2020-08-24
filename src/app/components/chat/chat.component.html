@@ -1,11 +1,34 @@
 <div class="chat">
-  <div class="card">
-    <h3>{{ activeMarker?.options.title }}</h3>
-    <div class="card-body"></div>
-    <div class="card-footer">
-      <input type="text" placeholder="username" />
-      <textarea rows="2" cols="50" placeholder="message"> </textarea>
-      <input type="submit" value="Submit" />
+  <div>
+    <input [(ngModel)]="chatMarker.options.title" class="my-3 chat-title" />
+    <div>
+      <app-message
+        *ngFor="let message of messageArray()"
+        [chatMessage]="message"
+      ></app-message>
+    </div>
+    <div>
+      <form name="myForm" #myForm="ngForm" class="d-flex flex-column">
+        <input
+          type="text"
+          placeholder="Username"
+          name="username"
+          [(ngModel)]="usernameValue"
+          required
+          class="mb-3"
+        />
+        <textarea
+          rows="2"
+          cols="50"
+          required
+          name="message"
+          placeholder="message"
+          [(ngModel)]="messageValue"
+          class="mb-3"
+        >
+        </textarea>
+        <button class="mb-3" (click)="onSubmit()">Submit</button>
+      </form>
     </div>
   </div>
 </div>

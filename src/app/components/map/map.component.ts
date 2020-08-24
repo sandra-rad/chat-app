@@ -14,7 +14,9 @@ import {
   Layer,
   Marker,
   LeafletEvent,
+  icon,
 } from 'leaflet';
+import { Chat } from '../chat/chat.model';
 
 @Component({
   selector: 'app-map',
@@ -37,16 +39,23 @@ export class MapComponent implements OnInit {
   activeMarker: Marker;
 
   constructor(private zone: NgZone) {}
+
   ngOnInit(): void {}
 
   onLeafletClick(event: LeafletMouseEvent) {
     const newMarker = marker(event.latlng, {
       title: 'Chatroom ' + (this.layers.length + 1),
-    }).on('click', (eventLeaflet: LeafletEvent) => {
-      this.zone.run(() => {
-        this.activeMarker = eventLeaflet.target as Marker;
+    })
+      .setIcon(
+        icon({
+          iconUrl: 'assets/marker-icon.png',
+        })
+      )
+      .on('click', (eventLeaflet: LeafletEvent) => {
+        this.zone.run(() => {
+          this.activeMarker = eventLeaflet.target as Marker;
+        });
       });
-    });
     this.activeMarker = newMarker;
     this.layers.push(newMarker);
   }

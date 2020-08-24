@@ -9,5 +9,5 @@
 <div class="default-message" *ngIf="!activeMarker; else chat">Click marker</div>
 
 <ng-template #chat>
-  <app-chat class="default-message" [activeMarker]="activeMarker"></app-chat>
+  <app-chat class="default-message" [chatMarker]="activeMarker"></app-chat>
 </ng-template>

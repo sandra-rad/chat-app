@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Marker } from 'leaflet';
+import { Message } from './message/message.model';
 
 @Component({
   selector: 'app-chat',
@@ -7,8 +9,32 @@ import { Marker } from 'leaflet';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-  @Input() activeMarker: Marker;
+  @Input() chatMarker: Marker;
+  @ViewChild('myForm', { static: false }) myForm: NgForm;
+
+  messages: Message[] = [];
+
+  usernameValue: string;
+  messageValue: string;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    this.messages.push(
+      new Message(
+        this.usernameValue,
+        this.messageValue,
+        this.chatMarker.getLatLng()
+      )
+    );
+    this.myForm.resetForm();
+  }
+
+  messageArray() {
+    return this.messages.filter((mess) => {
+      return mess.parentId === this.chatMarker.getLatLng();
+    });
+  }
 }
