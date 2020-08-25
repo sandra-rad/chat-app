@@ -22,14 +22,16 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.messages.push(
-      new Message(
-        this.usernameValue,
-        this.messageValue,
-        this.chatMarker.getLatLng()
-      )
-    );
-    this.myForm.resetForm();
+    if (this.myForm.valid) {
+      this.messages.push(
+        new Message(
+          this.usernameValue,
+          this.messageValue,
+          this.chatMarker.getLatLng()
+        )
+      );
+      this.myForm.resetForm();
+    }
   }
 
   messageArray() {

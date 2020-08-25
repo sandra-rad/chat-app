@@ -1,13 +1,17 @@
 <div
-  #mapHtml
-  class="map"
+  class="p-0 h-100"
   leaflet
   [leafletOptions]="options"
   [leafletLayers]="layers"
   (leafletClick)="onLeafletClick($event)"
 ></div>
-<div class="default-message" *ngIf="!activeMarker; else chat">Click marker</div>
+<div class="shadow py-3 px-4 default-message" *ngIf="!activeMarker; else chat">
+  Click on the map to start a chat
+</div>
 
 <ng-template #chat>
-  <app-chat class="default-message" [chatMarker]="activeMarker"></app-chat>
+  <app-chat
+    class="shadow py-3 px-4 default-message"
+    [chatMarker]="activeMarker"
+  ></app-chat>
 </ng-template>

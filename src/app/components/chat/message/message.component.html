@@ -1,7 +1,9 @@
-<div class="message-wrapper">
-  <p>{{ chatMessage.user }}:</p>
-  <div class="message-content">
-    <p>{{ chatMessage.message }}</p>
-    <div>{{ chatMessage.date | date }}</div>
+<div class="d-flex justify-content-between">
+  <p class="user mb-0">{{ chatMessage.user }}:</p>
+  <div class="mb-3 message-text">
+    <p class="mb-2 text-right">{{ chatMessage.message }}</p>
+    <div class="message-date text-right text-secondary">
+      {{ chatMessage.date | date }}
+    </div>
   </div>
 </div>

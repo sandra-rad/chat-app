@@ -1,7 +1,10 @@
 <div class="chat">
   <div>
-    <input [(ngModel)]="chatMarker.options.title" class="my-3 chat-title" />
-    <div>
+    <input
+      [(ngModel)]="chatMarker.options.title"
+      class="my-3 font-weight-bold text-capitalize w-100 chat-title"
+    />
+    <div class="message-wrapper pr-2">
       <app-message
         *ngFor="let message of messageArray()"
         [chatMessage]="message"
@@ -11,23 +14,25 @@
       <form name="myForm" #myForm="ngForm" class="d-flex flex-column">
         <input
           type="text"
+          maxlength="15"
           placeholder="Username"
           name="username"
           [(ngModel)]="usernameValue"
           required
           class="mb-3"
         />
-        <textarea
-          rows="2"
-          cols="50"
+        <input
           required
           name="message"
-          placeholder="message"
+          placeholder="Message"
+          maxlength="150"
           [(ngModel)]="messageValue"
           class="mb-3"
-        >
-        </textarea>
-        <button class="mb-3" (click)="onSubmit()">Submit</button>
+        />
+
+        <button class="btn btn-secondary mb-3 rounded-0" (click)="onSubmit()">
+          Submit
+        </button>
       </form>
     </div>
   </div>

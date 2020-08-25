@@ -1,8 +1,26 @@
-.chat-title {
-  font-size: 1rem;
-  border: 0;
-  &:focus {
-    border-bottom: 1px solid;
-    outline: none;
+.chat {
+  width: 300px;
+
+  .message-wrapper {
+    max-height: 200px;
+    overflow: auto;
+  }
+
+  .chat-title {
+    font-size: 1.1rem;
+    border: 0;
+
+    &:focus {
+      border-bottom: 1px solid;
+      outline: none;
+    }
+  }
+
+  input {
+    border: 1px solid #dedede;
+
+    &:focus {
+      outline-style: solid;
+    }
   }
 }

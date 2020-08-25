@@ -1,22 +1,14 @@
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  NgZone,
-} from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import {
   tileLayer,
   latLng,
   LeafletMouseEvent,
-  Map,
   marker,
   Layer,
   Marker,
   LeafletEvent,
   icon,
 } from 'leaflet';
-import { Chat } from '../chat/chat.model';
 
 @Component({
   selector: 'app-map',
@@ -24,8 +16,6 @@ import { Chat } from '../chat/chat.model';
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
-  @ViewChild('mapHtml') map: ElementRef<Map>;
-
   options = {
     layers: [
       tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.png'),
